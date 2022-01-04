@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>A basic map with Leaflet</title>
+    <title>TopoJSON Buffer Fade</title>
     
     <!--add Leaflet CSS-->
      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
@@ -35,36 +35,16 @@
     <!--our own code to create the map-->
     <script>
     
-    
-const MAP_BASEMAPS = [
-    {
-        type: 'xyz',
-        label: 'Map',
-        url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
-        attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community',
-    },
-    {
-        type: 'xyz',
-        label: 'Photo',
-        url: 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
-    },
-];    
-
-var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
-});
-    
       let map = L.map('map-container');
       map.setView([39.828175, -98.5795], 5);
-      let bglayer_Positron = L.tileLayer(
+      let bglayer_Esri = L.tileLayer(
         'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
 	       attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community',
         subdomains: 'abcd',
         maxZoom: 19
       });
       
-      bglayer_Positron.addTo(map);
+      bglayer_Esri.addTo(map);
       
       //extend Leaflet to create a GeoJSON layer from a TopoJSON file
       L.TopoJSON = L.GeoJSON.extend({
@@ -133,9 +113,6 @@ var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest
             fillColor: getColor(feature.properties.distance),
             fillOpacity: 1
           }
-        },
-        onEachFeature: function(feature, layer) {
-          layer.bindPopup('<p>'+feature.properties.distance+'</p>')
         }
       }).addTo(map);
       //fill: #317581;
