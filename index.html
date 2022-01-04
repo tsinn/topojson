@@ -66,38 +66,38 @@
       };
       
       function getColor(d) {
-          return d == 0 ? '93' :
-                 d == 1  ? '3' :
-                 d == 2  ? '6' :
-                 d == 3  ? '9' :
-                 d == 4  ? '12' :
-                 d == 5  ? '15' :
-                 d == 6  ? '18' :
-                 d == 7  ? '21' :
-                 d == 8  ? '24' :
-                 d == 9  ? '27' :
-                 d == 10  ? '30' :
-                 d == 11  ? '33' :
-                 d == 12  ? '36' :
-                 d == 13  ? '39' :
-                 d == 14  ? '42' :
-                 d == 15  ? '45' :
-                 d == 16  ? '48' :
-                 d == 17  ? '51' :
-                 d == 18  ? '54' :
-                 d == 19  ? '57' :
-                 d == 20  ? '60' :
-                 d == 21  ? '63' :
-                 d == 22  ? '66' :
-                 d == 23  ? '69' :
-                 d == 24  ? '72' :
-                 d == 25  ? '75' :
-                 d == 26  ? '78' :
-                 d == 27  ? '81' :
-                 d == 28  ? '84' :
-                 d == 29  ? '87' :
-                 d == 30  ? '90' :
-                            '100';
+          return d == 0 ? 'ffffffED' :
+                 d == 1  ? 'ffffff08' :
+                 d == 2  ? 'ffffff0F' :
+                 d == 3  ? 'ffffff17' :
+                 d == 4  ? 'ffffff1F' :
+                 d == 5  ? 'ffffff26' :
+                 d == 6  ? 'ffffff2E' :
+                 d == 7  ? 'ffffff36' :
+                 d == 8  ? 'ffffff3D' :
+                 d == 9  ? 'ffffff45' :
+                 d == 10  ? 'ffffff4D' :
+                 d == 11  ? 'ffffff54' :
+                 d == 12  ? 'ffffff5C' :
+                 d == 13  ? 'ffffff63' :
+                 d == 14  ? 'ffffff6B' :
+                 d == 15  ? 'ffffff73' :
+                 d == 16  ? 'ffffff7A' :
+                 d == 17  ? 'ffffff82' :
+                 d == 18  ? 'ffffff8A' :
+                 d == 19  ? 'ffffff91' :
+                 d == 20  ? 'ffffff99' :
+                 d == 21  ? 'ffffffA1' :
+                 d == 22  ? 'ffffffA8' :
+                 d == 23  ? 'ffffffB0' :
+                 d == 24  ? 'ffffffB8' :
+                 d == 25  ? 'ffffffBF' :
+                 d == 26  ? 'ffffffC7' :
+                 d == 27  ? 'ffffffCF' :
+                 d == 28  ? 'ffffffD6' :
+                 d == 29  ? 'ffffffDE' :
+                 d == 30  ? 'ffffffE6' :
+                            'fffffff';
       }
       
       //create an empty geojson layer
@@ -105,10 +105,9 @@
       var geojson = L.topoJson(null, {
         style: function(feature){
           return {
-            color: "#000",
-            opacity: 0,
+            color: getColor(feature.properties.distance),
             weight: 1,
-            fillColor: "#00ff0080"
+            fillColor: getColor(feature.properties.distance)
           }
         },
         onEachFeature: function(feature, layer) {
