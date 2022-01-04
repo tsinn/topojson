@@ -65,7 +65,7 @@
         return new L.TopoJSON(data, options);
       };
       
-      function getOpacity(d) {
+      function getColor(d) {
           return d == 0 ? 93 :
                  d == 1  ? 3 :
                  d == 2  ? 6 :
@@ -109,7 +109,7 @@
             opacity: 0,
             weight: 1,
             fillColor: "#000",
-            fillOpacity: getOpacity(feature.properties.distance)
+            fillOpacity: getColor(feature.properties.distance)
           }
         },
         onEachFeature: function(feature, layer) {
